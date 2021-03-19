@@ -12,7 +12,7 @@ FIELDS = ['symbol', 'sentiment', 'message', 'message_id']
 SYMBOL = ['BTC.X', 'ETH.X', 'XRP.X', 'LTC.X']
 SYMBOL_DICT = {'BTC.X': 3, 'ETH.X': 2, 'XRP.X': 1, 'LTC.X': 0}
 SYMBOL_DICT_REV = {3: 'BTC.X', 2: 'ETH.X', 1: 'XRP.X', 0: 'LTC.X'}
-FILE_NAME = 'crypto_db.csv'
+FILE_NAME = 'crypto_db_dated.csv'
 token = 0
 access_token = ['', 'access_token=32a3552d31b92be5d2a3d282ca3a864f96e95818&',
                 'access_token=44ae93a5279092f7804a0ee04753252cbf2ddfee&',
@@ -93,6 +93,7 @@ while True:
                 obj['symbol'] = SYMBOL[token]
                 obj['message'] = message['body']
                 obj['sentiment'] = temp['basic']
+                obj['datetime'] = message['created_at']
                 obj['message_id'] = message['id']
                 csvfile.writerow(obj)
                 file.flush()

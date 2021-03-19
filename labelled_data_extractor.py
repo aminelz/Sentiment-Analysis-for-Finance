@@ -12,7 +12,7 @@ FIELDS = ['symbol', 'sentiment', 'message', 'message_id']
 SYMBOL = ['AAPL', 'GOOGL', 'FB', 'AMZN']
 SYMBOL_DICT = {'AMZN': 3, 'FB': 2, 'GOOGL': 1, 'AAPL': 0}
 SYMBOL_DICT_REV = {3: 'AMZN', 2: 'FB', 1: 'GOOGL', 0: 'AAPL'}
-FILE_NAME = 'stock_db.csv'
+FILE_NAME = 'stock_db_dated.csv'
 token = 0
 access_token = ['', 'access_token=32a3552d31b92be5d2a3d282ca3a864f96e95818&',
                 'access_token=44ae93a5279092f7804a0ee04753252cbf2ddfee&',
@@ -93,6 +93,7 @@ while True:
                 obj['symbol'] = SYMBOL[token]
                 obj['message'] = message['body']
                 obj['sentiment'] = temp['basic']
+                obj['datetime'] = message['created_at']
                 obj['message_id'] = message['id']
                 csvfile.writerow(obj)
                 file.flush()
